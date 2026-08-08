@@ -6,7 +6,6 @@ import { hashPassword } from "@/helpers/auth";
 export async function POST(request: Request) {
   try {
     await connectDB();
-
     const { username, email, password } = await request.json();
 
     // 1. Basic validation
@@ -39,11 +38,20 @@ export async function POST(request: Request) {
     // 3. Hash the password safely using helper
     const passwordHash = await hashPassword(password);
 
-    // 4. Create and save the new user
+    // 4. Create and save the new user with explicit nested objects
     const newUser = new User({
       username: username.trim(),
       email: email.toLowerCase().trim(),
       passwordHash,
+      gamesPlayed: 0,
+      highScore: 0,
+      statsByCategory: {}, // Maps handle this cleanly
+      // ✨ Force initialization of the nested difficulties structure
+      statsByDifficulty: {
+        easy: { correct: 0, total: 0 },
+        medium: { correct: 0, total: 0 },
+        hard: { correct: 0, total: 0 },
+      },
     });
 
     await newUser.save();

@@ -1,10 +1,25 @@
 "use client";
 import { signIn, signOut } from "next-auth/react";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
+interface IExtendedSession {
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    id?: string | null;
+  };
+}
+
+interface ITier {
+  title: string;
+  style: string;
+}
 
 interface NavbarProps {
-  session: any;
-  router: any;
-  userTier: { title: string; style: string };
+  session: IExtendedSession | null;
+  router: AppRouterInstance;
+  userTier: ITier;
 }
 
 export default function Navbar({ session, router, userTier }: NavbarProps) {
