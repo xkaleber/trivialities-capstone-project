@@ -15,5 +15,5 @@ services:
       - key: NEXTAUTH_SECRET
         sync: false 
       - key: NEXTAUTH_URL
-        value: https://onrender.com
+        value: https://trivialities-trivia-app.onrender.com/
 
