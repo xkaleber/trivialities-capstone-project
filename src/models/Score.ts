@@ -14,8 +14,16 @@ const ScoreSchema: Schema = new Schema({
   userId: { type: String, required: true, ref: "User" },
   categoryId: { type: String, required: true },
   difficulty: { type: String, required: true },
-  score: { type: Number, required: true },
-  totalQuestions: { type: Number, required: true },
+  score: {
+    type: Number,
+    required: true,
+    min: [0, "Score cannot be negative"], // ✨ Added boundary to prevent negative scores and malicious inserts
+  },
+  totalQuestions: {
+    type: Number,
+    required: true,
+    min: [1, "Total questions must be at least 1"], // ✨ Added boundary to prevent zero or negative total questions and malicious inserts
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

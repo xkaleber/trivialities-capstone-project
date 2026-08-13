@@ -45,7 +45,12 @@ const UserSchema: Schema = new Schema(
       unique: true,
       lowercase: true,
       trim: true,
+      match: [
+        /^\s*[\w\.\-]+@[\w\.\-]+\.[\w\-]{2,4}\s*$/,
+        "Please enter a valid email address",
+      ], // ✨ Added regex to block invalid email formats and prevent injection attacks
     },
+
     passwordHash: { type: String, required: true },
     gamesPlayed: { type: Number, default: 0 },
     highScore: { type: Number, default: 0 },

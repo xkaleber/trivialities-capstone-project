@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: trivialities-trivia-app
+    runtime: node
+    repo: https://github.com/xkaleber/trivialities-capstone-project
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false # Set this securely inside the Render dashboard panel instead of hardcoding
+      - key: NEXTAUTH_SECRET
+        sync: false
+      - key: NEXTAUTH_URL
+        value: https://onrender.com # 🧠 Replace with your actual Render URL later

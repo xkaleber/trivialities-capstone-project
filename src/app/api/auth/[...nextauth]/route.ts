@@ -4,6 +4,11 @@ import bcrypt from "bcryptjs";
 import connectDB from "@/lib/mongoose";
 import User from "@/models/User";
 
+// ✨ Enforce environment variable security check
+if (!process.env.NEXTAUTH_SECRET) {
+  throw new Error("CRITICAL SECURITY ERROR: NEXTAUTH_SECRET environment variable is missing!");
+}
+
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -24,6 +29,7 @@ export const authOptions = {
         const user = await User.findOne({
           email: credentials.email.toLowerCase(),
         });
+
         if (!user) {
           throw new Error("No account found with that email address.");
         }
@@ -33,6 +39,7 @@ export const authOptions = {
           credentials.password,
           user.passwordHash,
         );
+
         if (!isPasswordValid) {
           throw new Error("Incorrect password string entered.");
         }
@@ -63,8 +70,7 @@ export const authOptions = {
   pages: {
     signIn: "/auth", // 👇 Redirects players to single /auth unified view page
   },
-  secret:
-    process.env.NEXTAUTH_SECRET || "fallback-secret-change-this-in-production",
+  secret: process.env.NEXTAUTH_SECRET, // ✨ Safe: no fallback string sitting in public code
   session: { strategy: "jwt" as const },
 };
 
