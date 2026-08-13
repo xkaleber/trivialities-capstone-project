@@ -2,16 +2,18 @@ services:
   - type: web
     name: trivialities-trivia-app
     runtime: node
-    plan: free # ✨ Specifies the free hosting plan tier
-    region: oregon # ✨ Provides a default physical location region
-    buildCommand: npm install --legacy-peer-deps && npm run build
+    plan: free 
+    region: oregon 
+    # Forces Render to include typescript and types during compilation phase
+    buildCommand: npm install --production=false --legacy-peer-deps && npm run build
     startCommand: npm run start
     envVars:
       - key: NODE_ENV
         value: production
       - key: MONGODB_URI
-        sync: false # ✨ Correct specification: prompts you for input on the dashboard screen
+        sync: false 
       - key: NEXTAUTH_SECRET
-        sync: false # ✨ Correct specification: prompts you for input on the dashboard screen
+        sync: false 
       - key: NEXTAUTH_URL
-        value: https://onrender.com # 🧠 Replace with your actual live link later if needed
+        value: https://onrender.com
+
