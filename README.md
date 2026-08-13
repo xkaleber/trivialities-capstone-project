@@ -3,13 +3,14 @@
 A complete, full-stack trivia platform featuring dynamic categorical gameplay sessions, live authentication profiles, chronological user performance metric trends, and a real-time competitive global leaderboard.
 
 ### 🌐 Live Production Deployment
-The application is fully deployed and operational at: **[https://onrender.com](https://onrender.com)** *(Replace with your actual Render link once created)*
+The application is fully deployed and operational at: **[https://trivialities-trivia-app.onrender.com](https://trivialities-trivia-app.onrender.com)**
 
 ### 📂 Planning Documentation Links
 Original concept sheets and structural architecture maps are saved directly inside the repo:
-* **[Project Proposal](docs/project-proposal.md)**
-* **[Control Flow Diagrams](docs/control-flow.md)**
-* **[Data Model Specifications](docs/data-model.md)**
+* **[Project Ideas](./docs/project-ideas.md)**
+* **[Project Proposal](./docs/project-proposal.md)**
+* **[Control Flow Diagrams](./docs/control-flow.md)**
+* **[Data Model Specifications](./docs/data-model.md)**
 
 ## 🚀 Key Features
 * **Open Trivia DB Integration:** Sources all question pools dynamically from the **[Open Trivia Database API](https://opentdb.com)**, an open-source, user-contributed trivia engine. The app integrates directly with OpenTDB endpoints using category ID references (e.g., Category 9 for General Knowledge) and strictly filters parameter mappings across easy, medium, and hard difficulty states.
